@@ -13,7 +13,7 @@
 
         <div class="protable-content">
             <div class="tabiteminit" v-for="(item,index) in prodata.province" :key="index" >
-                <div @click="itemClick(index)" :class="{tabitemInitItem : currentIndex !== index , Active : currentIndex === index}"  >{{item}}></div>
+                <div @click="itemClick(index,item)" :class="{tabitemInitItem : currentIndex !== index , Active : currentIndex === index}"  >{{item}}></div>
                 <div class="tabitemInitItem">{{prodata.cnum[index]}}</div>
                 <div class="tabitemInitItem">{{item}}</div>
                 <div class="tabitemInitItem">{{item}}</div>
@@ -40,8 +40,14 @@ export default {
         }
     },
     methods : {
-        itemClick(index){
+        itemClick(index,province){
             this.currentIndex = index
+            this.$router.push({
+                path : '/provincemap',
+                query: {
+                    proname : province
+                }
+            })
         }
     }
 

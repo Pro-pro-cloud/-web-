@@ -4,6 +4,7 @@ Vue.use(VueRouter)
 
 const Country=()=>import("../views/country/Country")
 const Province=()=>import("../views/province/Province")
+const ProMap=()=>import("../views/province/mapVue/proMap.vue")
 const routes = [
   {
     path: '',
@@ -16,6 +17,12 @@ const routes = [
   {
     path:'/province',
     component:Province
+  },
+
+
+  {
+    path:'/provincemap',
+    component:ProMap
   }
 ]
 

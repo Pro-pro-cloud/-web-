@@ -1,7 +1,7 @@
 <template>
   <div class="main-agg-data">
     <agg-data>
-      <agg-data-item v-for="(item,index) in aggData" :key="index" :data-style="item.bgc">
+      <agg-data-item v-for="(item,index) in aggData" :data-style="item.bgc" :key="index">
         <agg-data-con>
           <div slot="text">{{item.title}}</div>
         </agg-data-con>
@@ -59,7 +59,7 @@
     position: fixed;
     left: 250px;
     top: 10px;
-    overflow: hidden;
+    z-index: 99;
   }
   .cen-data{
     font-size: 24px;

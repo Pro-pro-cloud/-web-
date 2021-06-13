@@ -15,6 +15,5 @@
   display: flex;
   /*background-color: red;*/
   width: 1200px;
-  overflow: hidden;
 }
 </style>

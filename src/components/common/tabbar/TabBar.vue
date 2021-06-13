@@ -1,21 +1,26 @@
 <template>
-  <div class="tab-bar">
+  <div class="tab-bar" :style="style">
     <slot></slot>
   </div>
 </template>
 
 <script>
   export default {
-    name: "TabBar"
+    name: "TabBar",
+    props:{
+      tabbarStyle:Object
+    },
+    computed:{
+      style(){
+        return this.tabbarStyle
+      }
+    }
   }
 </script>
 
 <style scoped>
   .tab-bar {
-    width: 100%;
-    height: 50%;
-  }
-  .tab-bar div {
 
   }
+
 </style>

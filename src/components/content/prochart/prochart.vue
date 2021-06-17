@@ -1,7 +1,5 @@
 <template>
-    <div class="mychart" ref="mychart">
-        prochart
-    </div>
+    <div class="mychart" ref="mychart"></div>
 </template>
 
 <script>
@@ -14,8 +12,8 @@ export default {
     },
     props : {
         lineValue :{
-            type : Array,
-            default: []
+            type : Object,
+            default : () => {}
         }
     },
     watch : {
@@ -27,6 +25,7 @@ export default {
         }
     },
     mounted () {
+        console.log(this.lineValue.cnum);
         this.drawLine()
     },
     methods : {
@@ -35,18 +34,34 @@ export default {
             let option = {
                 xAxis: {
                     type: 'category',
-                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                    data: this.lineValue.xData
                 },
                 yAxis: {
                     type: 'value'
                 },
                 series: [{
-                    data: this.lineValue,
+                    name : this.lineValue.name[0],
+                    data: this.lineValue.cnum,
                     type: 'line',
                     smooth: true
-                }]
+                },
+                {
+                    name :this.lineValue.name[1],
+                    data: this.lineValue.snum,
+                    type: 'line',
+                    smooth: true
+                }],
+                tooltip : {
+                    trigger : 'axis'
+                },
+                legend : {
+                    data : this.lineValue.name
+                }
             }
-        option && mychart.setOption(option)            
+        option && mychart.setOption(option)
+        window.addEventListener('resize', ()=>{
+            mychart.resize()
+        })            
         }
     }
 }
@@ -55,7 +70,10 @@ export default {
 <style scoped>
     .mychart {
         height: 600px;
-        width: 600px;
+        width: 1160px;
+        margin-top: 12px;
         border: 1px black solid;
+        overflow-x: hidden;
+        margin-bottom: 50px;
     }
 </style>

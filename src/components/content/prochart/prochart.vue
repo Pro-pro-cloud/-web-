@@ -25,7 +25,6 @@ export default {
         }
     },
     mounted () {
-        console.log(this.lineValue.cnum);
         this.drawLine()
     },
     methods : {
@@ -58,10 +57,7 @@ export default {
                     data : this.lineValue.name
                 }
             }
-        option && mychart.setOption(option)
-        window.addEventListener('resize', ()=>{
-            mychart.resize()
-        })            
+        option && mychart.setOption(option)            
         }
     }
 }

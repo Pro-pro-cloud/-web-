@@ -5,9 +5,12 @@
       <tab-bar-item path="/country" class="item" :active-style="itemStyle">
         <div>全国疫情数据</div>
       </tab-bar-item>
+      
       <tab-bar-item path="/province" class="item" :active-style="itemStyle">
         <div>各省疫情数据</div>
       </tab-bar-item>
+      
+      
     </tab-bar>
   </div>
 

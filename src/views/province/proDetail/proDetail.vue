@@ -2,7 +2,7 @@
     <div>
         <main-agg-data :general-data="genData"></main-agg-data>
         <div class="hid"></div>
-        <div>proMap</div>
+        <div class="proMap">proMap</div>
         <div class="btn">
             <div class="btn-item" @click="btnClick(index)" v-for="(item,index) in btnTittle" :key="index">
                 <div @click="btnitemClick(index)" :class="{backup : index !== currentIndex, active : index === currentIndex}">{{item}}</div>
@@ -63,7 +63,6 @@ export default {
         },
         btnitemClick(index){
             this.currentIndex = index  
-            
         }
     }
 }
@@ -75,11 +74,20 @@ export default {
         top:0px;
         background-color: white;
         height: 140px;
-        width: 1160px;
+        width: 1170px;
         z-index: 3;
         overflow: hidden;
         top: 0;
-    }
+}
+
+.proMap {
+    width: 1160px;
+    height: 600px;
+    border: 1px black solid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .btn{
     display: flex;
     width: 1160px;
@@ -90,6 +98,7 @@ export default {
 .btn .btn-item{
     flex:1;
 }
+
 .backup{
     width: 100%;
     height: 49px;
@@ -101,9 +110,7 @@ export default {
 
     cursor: pointer;
  }
-  .btn .btn-item:nth-child(2) div{
-      /* border-right:1px rgba(248, 247, 247, 0.986) solid; */
- }
+
  .btn .btn-item:first-child div{
      border-top-left-radius: 8px;
      border-bottom-left-radius: 8px;
@@ -123,3 +130,5 @@ export default {
     cursor: pointer;
  }
 </style>
+
+

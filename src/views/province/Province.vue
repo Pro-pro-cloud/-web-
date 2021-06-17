@@ -1,7 +1,7 @@
 <template>
   <div class="Province">
     <main-agg-data :general-data="genData"></main-agg-data>
-    <pro-table></pro-table>
+    <router-view></router-view>
     <div></div>
   </div>
 </template>

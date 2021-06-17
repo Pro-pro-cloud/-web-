@@ -19,9 +19,7 @@
 </script>
 <style>
   @import "assets/css/base.css";
-  #app {
 
-  }
   .view{
     position: absolute;
     left: 275px;

@@ -43,7 +43,7 @@ export default {
         itemClick(index,province){
             this.currentIndex = index
             this.$router.push({
-                path : '/provincemap',
+                path : '/province/proDetail',
                 query: {
                     proname : province
                 }
@@ -65,10 +65,7 @@ export default {
         overflow: hidden;
         top: 0;
     }
-    /* .proTable{
-        position: relative;
-        z-index: -2;
-    } */
+
     .proTable-con{
 
         position: fixed;
@@ -91,9 +88,7 @@ export default {
     }
     .tabitem{
         flex: 1;
-        /* margin-right: 1px; */
         border-right:1px solid white ;
-        /* background-color: blanchedalmond; */
         background-color: rgba(240, 235, 235, 0.918);
     }
 

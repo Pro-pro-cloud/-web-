@@ -4,7 +4,8 @@ Vue.use(VueRouter)
 
 const Country=()=>import("../views/country/Country")
 const Province=()=>import("../views/province/Province")
-const ProMap=()=>import("../views/province/mapVue/proMap.vue")
+const ProDetail=()=>import("../views/province/proDetail/proDetail.vue")
+const ProTable=()=>import("../views/province/table/proTable.vue")
 const routes = [
   {
     path: '',
@@ -16,14 +17,19 @@ const routes = [
   },
   {
     path:'/province',
-    component:Province
+    component:Province,
+    redirect : '/province/proTable',
+    children : [
+      {
+        path:'/province/proDetail',
+        component:ProDetail
+      },
+      {
+        path: '/province/proTable',
+        component:ProTable
+      }
+    ]
   },
-
-
-  {
-    path:'/provincemap',
-    component:ProMap
-  }
 ]
 
 const router = new VueRouter({

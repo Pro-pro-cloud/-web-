@@ -2,7 +2,9 @@
     <div>
         <main-agg-data :general-data="genData"></main-agg-data>
         <div class="hid"></div>
-        <div class="proMap">proMap</div>
+        <div class="proMap" >
+            <pro-map style="width:1160px;height:600px"></pro-map>
+        </div>
         <div class="btn">
             <div class="btn-item" @click="btnClick(index)" v-for="(item,index) in btnTittle" :key="index">
                 <div @click="btnitemClick(index)" :class="{backup : index !== currentIndex, active : index === currentIndex}">{{item}}</div>
@@ -16,9 +18,10 @@
 
 import MainAggData from '../../../components/content/mainAggData/MainAggData.vue'
 import Prochart from '../../../components/content/prochart/prochart.vue'
+import proMap from '../../../components/content/proMap/proMap.vue'
 
 export default {
-    name: 'proMap',
+    name: 'proDetail',
     data () {
         return {
             province : null,
@@ -32,7 +35,8 @@ export default {
     },
     components:{
         MainAggData,
-        Prochart
+        Prochart,
+        proMap
     },
     created () {
         this.province = this.$route.query.proname

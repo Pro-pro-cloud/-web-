@@ -3,7 +3,7 @@
         <main-agg-data :general-data="genData"></main-agg-data>
         <div class="hid"></div>
         <div class="proMap" >
-            <pro-map style="width:1160px;height:600px"></pro-map>
+            <pro-map :province="province"></pro-map>
         </div>
         <div class="btn">
             <div class="btn-item" @click="btnClick(index)" v-for="(item,index) in btnTittle" :key="index">
@@ -27,9 +27,27 @@ export default {
             province : null,
             btnTittle : ['新增确诊/疑似','累计确诊/疑似','累计死亡/治愈'] ,
             chartData : [],
-            newAdd : {cnum :[820, 932, 901, 934, 1290, 1330, 1320],snum : [200,550,650,800,100,30,17],name : ['新增确诊','新增疑似'],xData:['2019年11月','2019年12月','2020年1月','2020年2月','2020年3月','2020年4月','2020年5月']},
-            addUpnum : {cnum : [222,555,444,680,20,1500,2100],snum : [200,550,650,800,100,30,17],name : ['累计确诊','累计疑似'],xData:['2019年11月','2019年12月','2020年1月','2020年2月','2020年3月','2020年4月','2020年5月']},
-            dnum : {cnum : [1,3,5,7,7,7,8],snum : [12,15,10,4,2,0,19],name : ['累计死亡','累计治愈'],xData:['2019年11月','2019年12月','2020年1月','2020年2月','2020年3月','2020年4月','2020年5月']},
+            proData : {
+            河北省:
+                {
+                newAdd : {cnum :[ 934, 1290, 1330, 1320,820, 932, 901,],snum : [200,100,30,17,550,650,800,],name : ['新增确诊','新增疑似'],xData:['2019年11月','2019年12月','2020年1月','2020年2月','2020年3月','2020年4月','2020年5月']},
+                addUpnum : {cnum : [22220,1500,2100,555,444,680,],snum : [200,550,650,800,100,30,17],name : ['累计确诊','累计疑似'],xData:['2019年11月','2019年12月','2020年1月','2020年2月','2020年3月','2020年4月','2020年5月']},
+                dnum : {cnum : [1,3,5,7,7,7,8],snum : [12,15,10,4,2,0,19],name : ['累计死亡','累计治愈'],xData:['2019年11月','2019年12月','2020年1月','2020年2月','2020年3月','2020年4月','2020年5月']}
+                },
+            北京市:
+                {
+                newAdd : {cnum :[820, 932, 901, 934, 1290, 1330, 1320],snum : [200,550,650,800,100,30,17],name : ['新增确诊','新增疑似'],xData:['2019年11月','2019年12月','2020年1月','2020年2月','2020年3月','2020年4月','2020年5月']},
+                addUpnum : {cnum : [222,555,444,680,20,1500,2100],snum : [200,800,100,305,50,650,17],name : ['累计确诊','累计疑似'],xData:['2019年11月','2019年12月','2020年1月','2020年2月','2020年3月','2020年4月','2020年5月']},
+                dnum : {cnum : [1,3,5,7,7,7,8],snum : [12,15,10,4,2,0,19],name : ['累计死亡','累计治愈'],xData:['2019年11月','2019年12月','2020年1月','2020年2月','2020年3月','2020年4月','2020年5月']}
+                },
+            天津市: 
+                {
+                newAdd : {cnum :[1,2,2,3,5,100,0],snum : [4,200,250,40,4,0,100],name : ['新增确诊','新增疑似'],xData:['2019年11月','2019年12月','2020年1月','2020年2月','2020年3月','2020年4月','2020年5月']},
+                addUpnum : {cnum : [4,200,250,40,4,0,100],snum : [1,2,2,3,5,100,0],name : ['累计确诊','累计疑似'],xData:['2019年11月','2019年12月','2020年1月','2020年2月','2020年3月','2020年4月','2020年5月']},
+                dnum : {cnum : [1,3,5,7,7,7,8],snum : [12,15,10,4,2,0,19],name : ['累计死亡','累计治愈'],xData:['2019年11月','2019年12月','2020年1月','2020年2月','2020年3月','2020年4月','2020年5月']}
+                }
+            },
+            
             currentIndex : 0
         }
     },
@@ -40,7 +58,7 @@ export default {
     },
     created () {
         this.province = this.$route.query.proname
-        this.chartData = this.newAdd
+        this.getproData()
     },
     computed:{
       genData(){
@@ -54,15 +72,18 @@ export default {
       }
     },
     methods : {
+        getproData(){
+            this.chartData = this.proData[this.province].newAdd
+        },
         btnClick(index){
             if(index === 0){
-                this.chartData = this.newAdd
+                this.chartData = this.proData[this.province].newAdd
             } else if (index === 1) {
-                this.chartData = this.addUpnum
+                this.chartData = this.proData[this.province].addUpnum
             } else if (index === 2){
-                this.chartData = this.dnum
+                this.chartData = this.proData[this.province].dnum
             } else {
-                this.chartData = this.newAdd
+                this.chartData = this.proData[this.province].newAdd
             } 
         },
         btnitemClick(index){

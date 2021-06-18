@@ -76,7 +76,7 @@ export default {
         width: 1160px;
         text-align: center;
         line-height: 39px;
-        font: 20px;
+        font-size: 20px;
         border: 1px solid white;
         border-bottom: 1px solid white;
         overflow: hidden;

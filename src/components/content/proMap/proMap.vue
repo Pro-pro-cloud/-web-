@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="echartMap" style="width:350px;height:400px"></div>
+    <div id="echartMap" style="width:1160px;height:600px"></div>
   </div>
 </template>
 
@@ -12,50 +12,7 @@ export default {
       batchId : "",
       areaData : [],
       provinceMap: null ,
-      province : "河北省"
-    }
-  },
-  computed : {
-
-  },
-  created() {  
-      this.provinceMap = require(`../../../assets/mapjson/${this.province}`)
-  },
-  mounted () {
-    this.mapInit(this.provinceMap)
-  },
-  methods : {
-    mapInit(provinceMap){
-      this.$nextTick(function () {
-        var chart = this.$echarts.init(document.querySelector("#echartMap"))
-        echarts.registerMap(`${this.province}`, provinceMap ,{})
-        chart.setOption({
-          series: [{
-            name : this.province,
-            label: {
-              normal : {
-                show : true
-              },
-              emphasis : {
-                show : true
-              }
-            },
-            itemStyle: {
-              color : '#ddb926'
-            },
-            type : 'map' ,
-            zoom :1,
-            roam : true,
-            mapType : this.province,
-            emphasis : {
-              label : {
-                show : true
-              }
-            },
-            textFixed : {
-              Alaska:[20,-20]
-            },
-            data : [{
+      proCityData : [{
               name : '张家口市',
               value: 4822023
             },
@@ -94,9 +51,75 @@ export default {
             {
               name:'旅顺口区',
               value:9317568
-            }
-            ]
+            }]
+      // province : "河北省"
+    }
+  },
+  props : {
+    province : {
+      type : String,
+    }
+  },
+  created () {
+    console.log(this.province);
+  },
+  computed : {
+    
+  },
+  created() {  
+      this.provinceMap = require(`../../../assets/mapjson/${this.province}`)
+  },
+  watch : {
+    // province : {
+    //         handler(){
+    //             this.provinceMap = require(`../../../assets/mapjson/${this.province}`)
+    //             this.mapInit(this.provinceMap)
+    //         },
+    //         deep:true
+    // }
+  },
+  mounted () {
+    this.mapInit(this.provinceMap)
+  },
+  methods : {
+    mapInit(provinceMap){
+      this.$nextTick(function () {
+        var chart = this.$echarts.init(document.querySelector("#echartMap"))
+        echarts.registerMap(`${this.province}`, provinceMap ,{})
+        chart.setOption({
+          series: [{
+            name : this.province,
+            label: {
+              normal : {
+                show : true
+              },
+              emphasis : {
+                show : true
+              }
+            },
+            
+            roam : false,
+            itemStyle: {
+              color : '#ddb926'
+            },
+            type : 'map' ,
+            zoom :1,
+            mapType : this.province,
+            emphasis : {
+              label : {
+                show : true
+              }
+            },
+            textFixed : {
+              Alaska:[20,-20]
+            },
+            data : this.proCityData,
+            
           }],
+          tooltip : {
+              trigger: 'item',
+              // formatter : ''
+            },
           //右下角数值条
           visualMap : {
             left:'right',
